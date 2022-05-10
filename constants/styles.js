@@ -4,6 +4,7 @@ export const GlobalStyles = {
         HeaderBackground: '#cccccc',
         background: '#dddddd',
         shadow: '#b3ab98',
-        trashIconColor: '#bd2d3c'
+        trashIconColor: '#bd2d3c',
+        buttonColor: '#54def0'
     }
 }
