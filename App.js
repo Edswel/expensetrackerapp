@@ -7,6 +7,7 @@ import ManageExpense from './screens/ManageExpense';
 import RecentExpense from './screens/RecentExpense';
 import AllExpenses from './screens/AllExpenses';
 import { GlobalStyles } from './constants/styles';
+import IconButton from './components/UI/IconButton';
 // import { StyleSheet, Text, View } from 'react-native';
 
 const Stack = createNativeStackNavigator();
@@ -18,7 +19,8 @@ function ExpensesOverview() {
       headerStyle: { backgroundColor: GlobalStyles.colors.header },
       headerTintColor: '#fff',
       tabBarStyle: { backgroundColor: GlobalStyles.colors.header },
-      tabBarActiveTintColor: '#fff'
+      tabBarActiveTintColor: '#fff',
+      headerRight: ({ tintColor }) => <IconButton icon='add' size={24} color={tintColor} onPress={() => { }} />
     }}>
       <BottomTabs.Screen name='RecentExpenses' component={RecentExpense} options={{
         title: 'Recent Expense',
