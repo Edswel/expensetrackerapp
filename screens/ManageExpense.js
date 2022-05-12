@@ -27,22 +27,18 @@ function ManageExpense({ route, navigation }) {
         navigation.goBack();
     }
 
-    function confirmHandler() {
+    function confirmHandler(expenseData) {
         if (isEditing) {
-            expensesCtx.updateExpense(editedExpenseId, { description: 'Testing 1 2 3', amount: 9.99, date: new Date('2022-05-11') });
+            expensesCtx.updateExpense(editedExpenseId, expenseData);
         } else {
-            expensesCtx.addExpense({ description: 'Test', amount: 99.99, date: new Date('2022-05-10') });
+            expensesCtx.addExpense(expenseData);
         }
         navigation.goBack();
     }
 
     return (
         <View style={styles.container}>
-            <ExpensesForm onCancel={cancelHandler} submitButtonLabel={isEditing ? 'Update' : 'Add'} />
-            {/* <View style={styles.buttons}>
-                <Button style={styles.button} mode='flat' onPress={cancelHandler}>Cancel</Button>
-                <Button style={styles.button} onPress={confirmHandler}>{isEditing ? 'Update' : 'Add'}</Button>
-            </View> */}
+            <ExpensesForm submitButtonLabel={isEditing ? 'Update' : 'Add'} onCancel={cancelHandler} onSubmit={confirmHandler} />
             {isEditing && (
                 <View style={styles.deleteContainer}>
                     <IconButton icon='trash' color={GlobalStyles.colors.trashIconColor} size={24}
