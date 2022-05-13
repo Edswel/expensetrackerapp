@@ -1,9 +1,24 @@
 import axios from 'axios';
-// const axios = require('axios');
+
+const BACKEND_URL = 'https://fir-project-2c204-default-rtdb.firebaseio.com'
 
 export function storeExpense(expenseData) {
-    axios.post(
-        'https://fir-project-2c204-default-rtdb.firebaseio.com/expenses.json',
-        expenseData
-    );
+    axios.post(BACKEND_URL + '/expenses.json', expenseData);
+}
+
+export async function fetchExpense() {
+    const response = await axios.get(BACKEND_URL + '/expenses.json');
+
+    const expenses = []
+
+    for (const key in response.data) {
+        const expenseObj = {
+            id: key,
+            amount: response.data[key].amount,
+            date: new Date(response.data[key].date),
+            description: response.data[key].description
+        };
+        expenses.push(expenseObj)
+    }
+    return expenses;
 }
